@@ -4,7 +4,7 @@ import me.dio.model.User;
 import me.dio.repository.UserRepository;
 import me.dio.service.UserService;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -28,4 +28,18 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(userToCreate);
     }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new NoSuchElementException("User not found");
+        }
+        userRepository.deleteById(id);
+    }
+
 }

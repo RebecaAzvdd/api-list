@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -33,4 +36,20 @@ public class UserController {
                 .toUri();
         return ResponseEntity.created(location).body(userCreated);
     }
+
+    @GetMapping
+    public ResponseEntity<List<User>> findAll() {
+        var users = userService.findAll();
+        return ResponseEntity.ok(users);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> delete(@PathVariable Long id) {
+        userService.delete(id);
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "User deleted successfully");
+        return ResponseEntity.ok(response);
+    }
+
 }
