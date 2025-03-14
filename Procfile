@@ -1,0 +1,1 @@
+web: java -jar target/api-list-1.0-SNAPSHOT.jar
