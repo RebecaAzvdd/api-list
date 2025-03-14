@@ -1,5 +1,3 @@
-Aqui está o **README** atualizado, removendo as informações sobre **JWT** e **update**:
-
 ---
 
 # User Management API
